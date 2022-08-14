@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+   --visibilityForFlashLightAfter: hidden;
+}
+
+html, body {
+    background: black;
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+
+.one {
+    background: black;
+    border-radius: 8px;
+    height: calc(100% - 20px);
+    min-width: calc(100% - 5px);
+    margin-left: -100%;
+    margin-top: 7.5px;
+    transition: margin-left 0.5s ease;
+    border-radius: 8px;
+}
+
+.loading-camera {
+    position: absolute;
+    height: 130px;
+    width: 160px; 
+    top: calc(50% - 65px);
+    left: calc(50% - 80px);
+    visibility: hidden;
+}
+
+.canvas-container {
+    position: absolute;
+    z-index: 3;
+    background: black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    transform: scale(0);
+    opacity: 0;
+    margin-top: -7.5px;
+    margin-left: -5px;
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.6s ease;
+    transform-origin: bottom;
+}
+
+.canvas-containerOn {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dummy-photo-viewer {
+    z-index: -1000;
+    position: absolute;
+    visibility: hidden;
+}
+
+.photo-viewer {
+    width: 100%;
+    max-width: 100%;
+    align-self: center;
+}
+
+.close-photo-viewer {
+    height: 45px;
+    width: 45px;
+    background: transparent;
+    color: white;
+    font-size: 45px;
+    outline: 0;
+    border: 0;
+    position: absolute;
+    align-self: flex-start;
+    transform: rotateZ(45deg);
+    font-weight: lighter;
+    margin-top: 2%;
+}
+
+.send-photo-viewer {
+    height: 45px;
+    width: 98%;
+    background: #181818;
+    color: lightgray;
+    outline: 0;
+    border: 1px solid rgba(170, 170, 170, 0.8);
+    border-radius: 5px;
+    align-self: flex-end;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    font-weight: bold;
+    position: absolute;
+}
+   
+
+.my-recorder {
+    position: relative;
+    top: 0;
+    right: 0;
+    object-fit: cover;
+    min-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    background-color: black;
+    visibility: hidden;
+    border-radius: 8px;
+}
+
+.rotation-for-camView {
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+}
+
+.flash-light {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    top: calc(-100% - 20px);
+    left: calc(10% - 20px);
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    background-image: url('images/flash.png');
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.flash-light::after {
+    content: 'A';
+    position: relative;
+    display: block;
+    height: 10px;
+    width: 10px;
+    font-size: 10px;
+    color: white;
+    background: 0;
+    top: 40%;
+    left: 60%;
+    visibility: var(--visibilityForFlashLightAfter);
+}
+
+.dummy-image-select {
+    height: 0;
+    width: 0;
+    appearance: 0;
+    visibility: 0;
+    pointer-events: none;
+}
+
+.image-select {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    top: calc(-10% - 20px);
+    left: calc(0% - 20px);
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    background-image: url('images/gallery.png');
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.photo-shoot {
+    position: relative;
+    height: 75px;
+    width: 75px;
+    top: calc(-10% - 37.5px);
+    left: calc(30% - 37.5px);
+    border-radius: 50%;
+    border: 2px solid white;
+    outline: 0;
+    background-color: #212121;
+    background-image: url('images/camera.png');
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.switch-camera {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    top: calc(-10% - 20px);
+    left: calc(50% - 20px);
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    background-image: url('images/switch.png');
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.4s ease;
+}
+
+.two {
+    background: #212121;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column;
+    height: calc(100% - 20px);
+    min-width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 7.5px;
+    transition: margin-left 0.5s ease;
+}
+
+.user-top-bar {
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #131313;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.threaded-text {
+    color: white;
+    font-family: 'Rubik', cursive;
+    font-size: 25px;
+    margin-left: 15px;
+    opacity: 0.7;
+    width: calc(100% - 30px);
+}
+
+.my-settings {
+    width: 17px;
+    height: 17px;
+    outline: none;
+    border: none;
+    background: url('images/settings.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    opacity: 0.55;
+}
+
+.user-outer-box {
+    height: calc(100% - 80px);
+    margin-top: 5px;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.user-box {
+    height: 70px;
+    width: calc(100% - 10px);
+    margin: 2.5px 5px 0 5px;
+    background: #353535;
+    border-radius: 3.5px;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.user-avatar {
+    height: 50px;
+    width: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background: url('images/pfp.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.user {
+    width: calc(100% - 80px);
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.user-name {
+    font-size: 20px;
+    margin: 0 0 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 75%;
+    color: white;
+    opacity: 0.8;
+    font-family: 'Rubik', cursive;
+}
+
+.last-message {
+    font-size: 16px;
+    margin: 8px 0 0 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 75%;
+    color: white;
+    opacity: 0.55;
+    font-family: 'Rubik', cursive;
+}
+
+.user-settings {
+    height: 100%;
+    width: 25px;
+    outline: none;
+    font-size: 30px;
+    color: white;
+    border: none;
+    opacity: 0.8;
+    background: 0;
+}
+
+.three {
+    background: #212121;
+    border-radius: 8px;
+    border-right: 5px solid black;
+    height: calc(100% - 20px);
+    margin-right: 15px;
+    min-width: 100%;    
+    margin-top: 7.5px;
+    transition: margin-left 0.5s ease;
+}
+
